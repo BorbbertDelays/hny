@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2026</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap');
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            /* UPDATED: Deep Purple to Lavender Gradient */
+            background: linear-gradient(to bottom, #10002b 0%, #240046 35%, #5a189a 100%);
+            font-family: 'Poppins', sans-serif;
+            color: #333;
+        }
+
+        #canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        #intro-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 10;
+            transition: opacity 1s ease;
+        }
+
+        h1.title {
+            font-family: 'Great Vibes', cursive;
+            color: #fff;
+            font-size: 4rem;
+            /* UPDATED: Lavender Glow */
+            text-shadow: 0 0 10px #e0aaff, 0 0 20px #9d4edd;
+            margin-bottom: 20px;
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        button.open-btn {
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #e0aaff; /* Lavender Border */
+            color: #fff;
+            border-radius: 50px;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            box-shadow: 0 0 15px rgba(224, 170, 255, 0.5); /* Lavender Shadow */
+            animation: pulse 2s infinite;
+        }
+
+        button.open-btn:hover {
+            background: #e0aaff;
+            color: #240046;
+            transform: scale(1.1);
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(224, 170, 255, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(224, 170, 255, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(224, 170, 255, 0); }
+        }
+
+        #letter-container {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 600px;
+            max-height: 85vh;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            z-index: 20;
+            overflow-y: auto;
+            opacity: 0;
+            transition: opacity 1.5s ease;
+            text-align: left;
+        }
+
+        #letter-container::-webkit-scrollbar {
+            width: 8px;
+        }
+        #letter-container::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+            border-radius: 10px;
+        }
+        #letter-container::-webkit-scrollbar-thumb {
+            background: #9d4edd; /* Purple Scrollbar */
+            border-radius: 10px;
+        }
+
+        .letter-header {
+            font-family: 'Great Vibes', cursive;
+            font-size: 2.5rem;
+            color: #7b2cbf; /* Deep Purple Header */
+            text-align: center;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .letter-body {
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .letter-body p {
+            margin-bottom: 15px;
+        }
+
+        .highlight {
+            color: #7b2cbf; /* Deep Purple Highlight */
+            font-weight: 600;
+        }
+
+        .signature {
+            margin-top: 30px;
+            text-align: right;
+            font-style: italic;
+            color: #000;
+        }
+
+        .ps-note {
+            font-size: 0.8rem;
+            color: #777;
+            text-align: center;
+            margin-top: 20px;
+            border-top: 1px solid #ddd;
+            padding-top: 10px;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 600px) {
+            h1.title { font-size: 3rem; }
+            .letter-container { width: 95%; padding: 20px; }
+        }
+
+    </style>
+</head>
+<body>
+
+    <canvas id="canvas"></canvas>
+
+    <div id="intro-screen">
+        <h1 class="title">Happy 2026!</h1>
+        <button class="open-btn" onclick="openGift()">Click to Open 💌</button>
+    </div>
+
+    <div id="letter-container">
+        <div class="letter-header">Happy New Year!! 🎉</div>
+        <div class="letter-body">
+            <p>Thank you soooooo much for making my year!</p>
+            
+            <p>At the start of 2025, I genuinely had no idea what was gonna happen, let alone who I was gonna be with that year. But when I met you, <strong>I instantly knew that you were the one.</strong></p>
+
+            <p>I had many victories this year. My first and last public speaking fest in gr10, the many glee performances, the trips out of the country, the new hobbies I picked up, but none of those things compare to my biggest win of this year and quite frankly, the biggest win of my entire life: <span class="highlight">falling in love with you.</span></p>
+
+            <p>Meeting you and finally getting to talk with you felt like a dream. I legit thought, <em>“oh maybe she’ll just see me as a friend, but let’s do it anyways”</em> and that was it, but holyyyyy you proved me so wrong in the most shocking way possible.</p>
+
+            <p>We’ve had our ups and downs, we’ve done many things, but all that matters is that I’ve done those things with you! I’m so thankful that I got to be with you and even though we didn’t start 2025 together, at least we got to end it together.</p>
+
+            <p>Thank you soooo much for being with me, for spending your precious time with me, for being my number one, for always making sure I’m okay, for understanding me, for doing things that you normally didn’t do before us, for always making me the happiest man in the world, and most importantly, thank you for all the love that you’ve given me these past three months.</p>
+
+            <p>I will always cherish you always and I will always love you forever and ever and ever. I hope 2026 will be a great year for the both of us and as long as we have each other, I think we could make better than the last!</p>
+
+            <div class="signature">
+                Happy New Year, Janelle!<br>
+                With all of my love and all of my heart,<br>
+                <strong>Gian</strong> ❤️
+            </div>
+            
+            <div class="ps-note">
+                p.s. theres so much more i wanna say to you but this is all i got in text form hehe ❤️
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById("canvas");
+        const ctx = canvas.getContext("2d");
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+
+        class Particle {
+            constructor(x, y, color) {
+                this.x = x;
+                this.y = y;
+                this.color = color;
+                this.radius = Math.random() * 3 + 1;
+                this.velocity = {
+                    x: (Math.random() - 0.5) * 8,
+                    y: (Math.random() - 0.5) * 8
+                };
+                this.gravity = 0.05;
+                this.friction = 0.98;
+                this.alpha = 1;
+            }
+
+            draw() {
+                ctx.save();
+                ctx.globalAlpha = this.alpha;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
+                ctx.fillStyle = this.color;
+                ctx.fill();
+                ctx.closePath();
+                ctx.restore();
+            }
+
+            update() {
+                this.velocity.x *= this.friction;
+                this.velocity.y *= this.friction;
+                this.velocity.y += this.gravity;
+                this.x += this.velocity.x;
+                this.y += this.velocity.y;
+                this.alpha -= 0.01;
+            }
+        }
+
+        function createFirework(x, y) {
+            // UPDATED: Purple & Lavender Color Palette
+            const colors = ['#e0aaff', '#c77dff', '#9d4edd', '#7b2cbf', '#ffffff', '#ffd700'];
+            for (let i = 0; i < 50; i++) {
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particles.push(new Particle(x, y, color));
+            }
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            ctx.fillStyle = 'rgba(16, 0, 43, 0.2)'; // Fades out with Dark Purple
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            particles.forEach((particle, index) => {
+                if (particle.alpha > 0) {
+                    particle.update();
+                    particle.draw();
+                } else {
+                    particles.splice(index, 1);
+                }
+            });
+        }
+
+        window.addEventListener('click', (e) => {
+            createFirework(e.clientX, e.clientY);
+        });
+
+        function openGift() {
+            document.getElementById('intro-screen').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('intro-screen').style.display = 'none';
+                
+                const letter = document.getElementById('letter-container');
+                letter.style.display = 'block';
+                void letter.offsetWidth; 
+                letter.style.opacity = '1';
+
+                let count = 0;
+                let interval = setInterval(() => {
+                    createFirework(
+                        Math.random() * canvas.width, 
+                        Math.random() * canvas.height / 2
+                    );
+                    count++;
+                    if(count > 10) clearInterval(interval);
+                }, 300);
+
+            }, 1000);
+        }
+
+        animate();
+    </script>
+</body>
+</html>

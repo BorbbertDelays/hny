@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>2026</title>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;400;600&display=swap');
@@ -17,6 +18,14 @@
             background: linear-gradient(to bottom, #10002b 0%, #240046 35%, #5a189a 100%);
             font-family: 'Poppins', sans-serif;
             color: #333;
+            background-attachment: fixed;
+            height: 100%;
+            overscroll-behavior: none;
+        }
+
+        body {
+            padding-top: env(safe-area-inset-top);
+            padding-bottom: env(safe-area-inset-bottom);
         }
 
         #canvas {
